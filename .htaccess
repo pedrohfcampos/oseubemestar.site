@@ -1,0 +1,8 @@
+    <files ~ "^.*\.([Hh][Tt][Aa])">
+    order allow,deny
+    deny from all
+    satisfy all
+    </files>
+    
+    RewriteEngine On
+    RewriteRule ^([0-9A-Za-z-_]+)$ /$1.html
