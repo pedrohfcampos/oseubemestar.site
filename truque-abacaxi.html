@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR" dir="ltr">
 <head>
+    <script type="text/javascript">
+var newUrl = location.pathname + location.search;
+
+(function(window, location) {
+history.replaceState(null, document.title, newUrl+"#!/backbutton");
+history.pushState(null, document.title, newUrl);
+window.addEventListener("popstate", function() {
+if(location.hash === "#!/backbutton") {
+history.replaceState(null, document.title, newUrl);
+setTimeout(function(){
+location.replace("https://oseubemestar.site/oferta-unica");
+},0);
+}
+}, false);
+}(window, location));
+</script>
 <meta name="robots" content="noindex, nofollow">
 <link rel="shortcut icon" href="data:" />
 <meta property="og:type" content="website">
