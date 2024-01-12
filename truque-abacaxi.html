@@ -17,6 +17,34 @@ location.replace("https://oseubemestar.site/oferta-unica-pepper");
 }, false);
 }(window, location));
 </script>
+    
+    <script>
+  function getParams() {
+    let t = "",
+      e = window.top.location.href,
+      r = new URL(e);
+    if (null != r) {
+      let a = r.searchParams.get("utm_source"),
+        n = r.searchParams.get("utm_medium"),
+        o = r.searchParams.get("utm_campaign"),
+        m = r.searchParams.get("utm_term"),
+        c = r.searchParams.get("utm_content");
+      -1 !== e.indexOf("?") && (t = `&sck=${a}|${n}|${o}|${m}|${c}`),
+        console.log(t);
+    }
+    return t;
+  }
+  !(function () {
+    var t = new URLSearchParams(window.location.search);
+    t.toString() &&
+      document.querySelectorAll("a").forEach(function (e) {
+            (-1 === e.href.indexOf("?")
+              ? (e.href += "?" + t.toString() + getParams())
+              : (e.href += "&" + t.toString() + getParams()));
+      });
+  })();
+</script>
+    
 <meta name="robots" content="noindex, nofollow">
 <link rel="shortcut icon" href="data:" />
 <meta property="og:type" content="website">
