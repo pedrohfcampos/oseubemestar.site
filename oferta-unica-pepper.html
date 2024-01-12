@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-BR" dir="ltr">
 <head>
-  <!-- Hotjar Tracking Code for 97$ -->
-<script>
-    (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:3709508,hjsv:6};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+  <script>
+  function getParams() {
+    let t = "",
+      e = window.top.location.href,
+      r = new URL(e);
+    if (null != r) {
+      let a = r.searchParams.get("utm_source"),
+        n = r.searchParams.get("utm_medium"),
+        o = r.searchParams.get("utm_campaign"),
+        m = r.searchParams.get("utm_term"),
+        c = r.searchParams.get("utm_content");
+      -1 !== e.indexOf("?") && (t = `&sck=${a}|${n}|${o}|${m}|${c}`),
+        console.log(t);
+    }
+    return t;
+  }
+  !(function () {
+    var t = new URLSearchParams(window.location.search);
+    t.toString() &&
+      document.querySelectorAll("a").forEach(function (e) {
+            (-1 === e.href.indexOf("?")
+              ? (e.href += "?" + t.toString() + getParams())
+              : (e.href += "&" + t.toString() + getParams()));
+      });
+  })();
 </script>
+  
   <fs class="RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}.html -f
