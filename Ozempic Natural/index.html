@@ -281,11 +281,28 @@ text-align: left;
 }
 }
 </style>
-<div class="headline-FWBNBt2719597-element headline">
-<h1>
-Por Marcos Almeida
-</h1>
+<div class="subheadline-zdQIcA8856509-element subheadline">
+    <h2>
+        <b>Por <span style="color: #930000;">G1</span> Notícias</b><br>Atualizado há <span id="horas">2 horas</span> -&nbsp;<span id="data" class="sm"></span>
+    </h2>
 </div>
+</div>
+
+<script>
+// Obtenha o elemento de data
+var dataElement = document.getElementById("data");
+
+// Obtenha a data atual
+var dataAtual = new Date();
+
+// Formate a data para o formato desejado (DD/MM/AAAA)
+var dia = dataAtual.getDate();
+var mes = dataAtual.getMonth() + 1; // Lembre-se que os meses em JavaScript são baseados em zero
+var ano = dataAtual.getFullYear();
+
+// Atualize o elemento de data no formato desejado
+dataElement.textContent = dia + '/' + mes + '/' + ano;
+</script>
 </div>
 <div class="image-ixfYYi2719597">
 <style>
