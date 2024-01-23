@@ -1,4 +1,57 @@
 <!DOCTYPE html><html lang="pt-BR" dir="ltr"><head>
+  <script>
+  function work() {
+    function getParams() {
+      let t = '';
+      const e = window.top.location.href;
+      const r = new URL(e);
+      if (r != null) {
+        const a = r.searchParams.get('utm_source');
+        const n = r.searchParams.get('utm_medium');
+        const o = r.searchParams.get('utm_campaign');
+        const m = r.searchParams.get('utm_term');
+        const c = r.searchParams.get('utm_content');
+        const w = r.searchParams.get('xcod');
+        e.indexOf('?') !== -1 &&
+          (t = `&sck=${a}|${n}|${o}|${m}|${c}&xcod=${w}`),
+          console.log(t);
+      }
+      return t;
+    }
+    !(function () {
+      const t = new URLSearchParams(window.location.search);
+      t.toString() &&
+        document.querySelectorAll('a').forEach((e) => {
+          e.href.indexOf('?') === -1
+            ? (e.href += `?${t.toString()}${getParams()}`)
+            : (e.href += `&${t.toString()}${getParams()}`);
+        });
+    })();
+  }
+
+  if (document.readyState === 'complete') {
+    work();
+  } else {
+    window.addEventListener('load', work);
+  }
+</script>
+  <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1593251608112134');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1593251608112134&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <meta name="robots" content="index, follow">
 <link rel="shortcut icon" href="data:">
 <meta property="og:type" content="website">
