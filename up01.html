@@ -1,58 +1,30 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",(e=>{this.persisted=e.persisted})),window.addEventListener("DOMContentLoaded",(()=>{this._preconnect3rdParties()})),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){document.hidden?e._triggerListener():(this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventHandler,{passive:!0}))),window.addEventListener("touchstart",e.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",e.touchStartHandler),document.addEventListener("visibilitychange",e.userEventHandler))}_removeUserInteractionListener(){this.triggerEvents.forEach((e=>window.removeEventListener(e,this.userEventHandler,{passive:!0}))),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(e){"HTML"!==e.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),e.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"onclick","rocket-onclick"))}_onTouchMove(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick")}_onTouchEnd(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(e){e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this.interceptedClicks.push(e),e.preventDefault(),e.stopPropagation(),e.stopImmediatePropagation()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach((e=>{e.target.dispatchEvent(new MouseEvent("click",{view:e.view,bubbles:!0,cancelable:!0}))}))}_renameDOMAttribute(e,t,n){e.hasAttribute&&e.hasAttribute(t)&&(event.target.setAttribute(n,event.target.getAttribute(t)),event.target.removeAttribute(t))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let e=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((t=>{if(t.hasAttribute("src")){const n=new URL(t.src).origin;n!==location.origin&&e.push({src:n,crossOrigin:t.crossOrigin||"module"===t.getAttribute("data-rocket-type")})}})),e=[...new Map(e.map((e=>[JSON.stringify(e),e]))).values()],this._batchInjectResourceHints(e,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(e){}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._replayClicks()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._littleBreath(),new Promise((t=>{const n=document.createElement("script");[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type"),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t());try{e.parentNode.replaceChild(n,e)}catch(e){t()}}))}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(e,t){var n=document.createDocumentFragment();e.forEach((e=>{if(e.src){const i=document.createElement("link");i.href=e.src,i.rel=t,"preconnect"!==t&&(i.as="script"),e.getAttribute&&"module"===e.getAttribute("data-rocket-type")&&(i.crossOrigin=!0),e.crossOrigin&&(i.crossOrigin=e.crossOrigin),n.appendChild(i)}})),document.head.appendChild(n)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(i){e["rocket"+t]=n=i}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),await this._littleBreath();const e=new Event("rocket-pageshow");e.persisted=this.persisted,window.dispatchEvent(e),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,i=document.createRange(),r=n.parentElement;let o=e.get(n);void 0===o&&(o=n.nextSibling,e.set(n,o));const s=document.createDocumentFragment();i.setStart(s,0),s.appendChild(i.createContextualFragment(t)),r.insertBefore(s,o)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise((e=>setTimeout(e))):new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts;e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
-	
-		<title>NÃO FECHE ESSA PÁGINA</title><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto%20Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CUrbanist%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CSora%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=swap" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto%20Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CUrbanist%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CSora%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=swap" media="print" onload="this.media='all'" /><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto%20Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CUrbanist%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CSora%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=swap" /></noscript>
-<meta name='robots' content='max-image-preview:large' />
-<script type="rocketlazyloadscript" data-rocket-type='application/javascript'>console.log('PixelYourSite Free version 9.4.2');</script>
-<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
-<link rel="alternate" type="application/rss+xml" title="Feed para  &raquo;" href="https://cuidadosemdia.online/feed/" />
-<link rel="alternate" type="application/rss+xml" title="Feed de comentários para  &raquo;" href="https://cuidadosemdia.online/comments/feed/" />
-<style>
-img.wp-smiley,
-img.emoji {
-	display: inline !important;
-	border: none !important;
-	box-shadow: none !important;
-	height: 1em !important;
-	width: 1em !important;
-	margin: 0 0.07em !important;
-	vertical-align: -0.1em !important;
-	background: none !important;
-	padding: 0 !important;
-}
-</style>
-	<link rel='stylesheet' id='wp-block-library-css' href='https://cuidadosemdia.online/wp-includes/css/dist/block-library/style.min.css?ver=6.3.2' media='all' />
-<style id='classic-theme-styles-inline-css'>
-/*! This file is auto-generated */
-.wp-block-button_link{color:#fff;background-color:#ffffff;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file_button{background:#ffffff;color:#fff;text-decoration:none}
-</style>
-<style id='global-styles-inline-css'>
-body{--wp--preset--color--white: #ffffff;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
-.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
-:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
-:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
-.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
-</style>
-<link rel='stylesheet' id='jquery-ui-core-css' href='https://cuidadosemdia.online/wp-content/plugins/smartfunnel/assets/jquery-ui-1.12.0.custom/jquery-ui.min.css?ver=6.3.2' media='all' />
-<link rel='stylesheet' id='hello-elementor-css' href='https://cuidadosemdia.online/wp-content/themes/hello-elementor/style.min.css?ver=2.8.1' media='all' />
-<link rel='stylesheet' id='hello-elementor-theme-style-css' href='https://cuidadosemdia.online/wp-content/themes/hello-elementor/theme.min.css?ver=2.8.1' media='all' />
-<link rel='stylesheet' id='elementor-frontend-css' href='https://cuidadosemdia.online/wp-content/plugins/elementor/assets/css/frontend-lite.min.css?ver=3.15.3' media='all' />
-<link rel='stylesheet' id='elementor-post-8-css' href='https://cuidadosemdia.online/wp-content/uploads/elementor/css/post-8.css?ver=1692809104' media='all' />
-<link data-minify="1" rel='stylesheet' id='elementor-icons-css' href='https://cuidadosemdia.online/wp-content/cache/min/1/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css?ver=1695989325' media='all' />
-<link data-minify="1" rel='stylesheet' id='swiper-css' href='https://cuidadosemdia.online/wp-content/cache/min/1/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css?ver=1695989325' media='all' />
-<link rel='stylesheet' id='elementor-pro-css' href='https://cuidadosemdia.online/wp-content/plugins/elementor-pro/assets/css/frontend-lite.min.css?ver=3.7.3' media='all' />
-<link rel='stylesheet' id='elementor-global-css' href='https://cuidadosemdia.online/wp-content/uploads/elementor/css/global.css?ver=1692809104' media='all' />
-<link rel='stylesheet' id='elementor-post-95-css' href='https://cuidadosemdia.online/wp-content/uploads/elementor/css/post-95.css?ver=1696112072' media='all' />
-</script>
-<meta name="generator" content="Elementor 3.15.3; features: e_dom_optimization, e_optimized_assets_loading, e_optimized_css_loading, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-auto">
-<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript>	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<!-- SNIPPET DOPPUS -->
+<html lang="pt-BR" dir="ltr">
+<head>
+    <script type="text/javascript">
+        var newUrl = location.pathname + location.search;
+        
+        (function(window, location) {
+        history.replaceState(null, document.title, newUrl+"#!/backbutton");
+        history.pushState(null, document.title, newUrl);
+        window.addEventListener("popstate", function() {
+        if(location.hash === "#!/backbutton") {
+        history.replaceState(null, document.title, newUrl);
+        setTimeout(function(){
+        location.replace("https://oseubemestar.site/down01");
+        },0);
+        }
+        }, false);
+        }(window, location));
+        </script>
+
+        <!-- SNIPPET DOPPUS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script defer="defer">function r(a){if("undefined"!==$.type(a.data)&&"array"===$.type(a.data)&&2===a.data.length)try{for(;(el=$('*:contains("'+a.data[0]+'")').last())&&el&&el.length;)console.log(a.data,el),el.html(el.html().replace(a.data[0],a.data[1]));for(;(lk=$('a[href$="'+a.data[0]+'"]:last'))&&lk&&lk.length;)console.log(a.data,lk),lk.attr("href",a.data[1]),lk.attr("target",a.data[0].toLowerCase().indexOf("modal")>-1?"_self":"_top");for(;(im=$('img[src$="'+a.data[0]+'"]'))&&im&&im.length;)console.log(a.data,im),im.attr("src",a.data[1])}catch(t){console.log("jquery.error",t),document.body.innerHTML=document.body.getInnerHTML().replaceAll(a.data[0],a.data[1])}}window.addEventListener("message",r,!1);</script>
 <!-- FIM SNIPPET -->
-<!-- Meta Pixel Code -->
+
+    <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -69,133 +41,605 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=979563323105410&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+<meta name="robots" content="index, follow">
+<link rel="shortcut icon" href="data:" />
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dominandoasaude.online/ultima-chance">
+<meta property="og:title" content="NÃO FECHE">
+<meta property="og:description" content="NÃO FECHE">
+<meta property="og:image" content="https://img.imageboss.me/atm/cdn/format:auto/u/t0r5SIyNS1QKKuHkKHaItqM7rOS2/l/BdIqmH0445123.jpeg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title>NÃO FECHE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.onload=null;this.removeAttribute('media');">
+<style>@media (max-width:640px){.atm-hidden-mobile{display:none}}@media (min-width:640px){.atm-hidden-desktop{display:none}}.col-span-1{grid-column: span 1 / span 1;}.col-span-2{grid-column: span 2 / span 2;}.items-center{align-items:center}.grid-cols-6{grid-template-columns: repeat(6, minmax(0, 1fr))}.grid-cols-5{	grid-template-columns: repeat(5, minmax(0, 1fr))}.grid-cols-4{grid-template-columns: repeat(4, minmax(0, 1fr))}.grid-cols-2{grid-template-columns: repeat(2, minmax(0, 1fr))}.grid-cols-3{grid-template-columns: repeat(3, minmax(0, 1fr))}.grid-cols-1{grid-template-columns: repeat(1, minmax(0, 1fr))}.grid{display:grid}.basis-1\/2{flex-basis:50%}.flex{display:flex}.gap-1{gap:4px}.gap-2{gap:8px}.gap-4{gap:16px}.gap-6{gap:24px}.gap-12{48px}.gap-24{gap:96px}.justify-center{justify-content:center}.basis-full{flex-basis:100%}html{scroll-behavior:smooth;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}body,center,dd,del,div,dt,em,footer,h1,h2,h3,h4,h5,h6,i,iframe,img,p,q,s,small,span,strike,strong,sub,sup,table,tbody,td,tr,u{margin:-1px 0 0 0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;font-family:Roboto,sans-serif}.u{-moz-user-select:none;-webkit-user-select:none;cursor:default}table{border-collapse:collapse;border-spacing:0}body{line-height:1}body{background-color:#191919;overflow-x:hidden}iframe,img,svg{max-width:100%}h1,h1 b,h1 span,h2,h2 b,h2 span,h3,h3 b,h3 span{font-family:Assistant,sans-serif}a{text-decoration:none;font-family:Roboto,sans-serif}a.btn{font-family:Montserrat,sans-serif}em span.lg,em span.md,em span.sm{font-style:italic}@media (max-width:600px){.flex-large,.flex-small{margin-right:0!important;margin-bottom:16px}}.flexrow{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center}.flex-large,.flex-small{flex-basis:100%}.flex-large:last-child,.flex-small:last-child{margin-right:0!important}@media (min-width:600px){.flex-small{flex:1;margin-bottom:0!important;padding-bottom:0!important}.flex-small.half{flex:0 0 calc(1 / 2 * 100%)}.flex-small.one-fifth{flex:0 0 calc(1 / 5 * 100%)}.flex-small.two-fifths{flex:0 0 calc(2 / 5 * 100%)}.flex-small.one-fourth{flex:0 0 calc(1 / 4 * 100%)}.flex-small.two-fourths{flex:0 0 calc(2 / 4 * 100%)}.flex-small.three-fourths{flex:0 0 calc(3 / 4 * 100%)}.flex-small.one-third{flex:0 0 calc(1 / 3 * 100%)}.flex-small.two-thirds{flex:0 0 calc(2 / 3 * 100%)}}@media (min-width:1000px){.flex-large{flex:1;margin-bottom:0}.flex-large.half{flex:0 0 calc(1 / 2 * 100%)}.flex-large.one-fifth{flex:0 0 calc(1 / 5 * 100%)}.flex-large.two-fifths{flex:0 0 calc(2 / 5 * 100%)}.flex-large.one-fourth,.flex-large.two-fourths{flex:0 0 calc(1 / 4 * 100%)}.flex-large.three-fourths{flex:0 0 calc(3 / 4 * 100%)}.flex-large.one-third{flex:0 0 calc(1 / 3 * 100%)}.flex-large.two-thirds{flex:0 0 calc(2 / 3 * 100%)}}@media (min-width:640px){.sm\:gap-1{gap:6px}.sm\:gap-2{gap:12px!important}.sm\:gap-4{gap:24px}.sm\:gap-6{gap:32px}.sm\:gap-12{gap:64px}.sm\:gap-24{gap:128px}.sm\:grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.sm\:grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.sm\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.sm\:grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}}</style>
 </head>
-<body data-rsssl=1 class="page-template-default page page-id-95 elementor-default elementor-template-canvas elementor-kit-8 elementor-page elementor-page-95">
-			<div data-elementor-type="wp-page" data-elementor-id="95" class="elementor elementor-95">
-							<div class="elementor-element elementor-element-3a0f707 e-flex e-con-boxed e-con" data-id="3a0f707" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;content_width&quot;:&quot;boxed&quot;}">
-					<div class="e-con-inner">
-				<div class="elementor-element elementor-element-36b92acd elementor-widget elementor-widget-heading" data-id="36b92acd" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<style>/*! elementor - v3.15.0 - 20-08-2023 */
-.elementor-heading-title{padding:0;margin:0;line-height:1}.elementor-widget-heading .elementor-heading-title[class*=elementor-size-]>a{color:inherit;font-size:inherit;line-height:inherit}.elementor-widget-heading .elementor-heading-title.elementor-size-small{font-size:15px}.elementor-widget-heading .elementor-heading-title.elementor-size-medium{font-size:19px}.elementor-widget-heading .elementor-heading-title.elementor-size-large{font-size:29px}.elementor-widget-heading .elementor-heading-title.elementor-size-xl{font-size:39px}.elementor-widget-heading .elementor-heading-title.elementor-size-xxl{font-size:45px}</style><h2 class="elementor-heading-title elementor-size-default" style="font-size: 20px; padding: -6px;">
-    ⚠ ATENÇÃO! Não feche ou atualize essa página, isso pode gerar erros na sua compra!
+<body id="_t0r5SIyNS1QKKuHkKHaItqM7rOS2" data-page="_ASymEeDzVECCEgiL3frE">
+<style>
+.Ngbcxf6894742 {display: none}
+@media (max-width: 640px) {
+html {overflow-x:hidden}
+}
+</style>
+<style>.zooming { animation: zooming 1.25s ease infinite; } @keyframes zooming { 0% { transform: scale(1, 1); } 50% { transform: scale(1.1, 1.1); } 100% { transform: scale(1, 1); } }</style>
+<div class="division-PXbhzQ8772352__wrapper">
+<style>
+#division-PXbhzQ8772352 {
+border: none;
+border-radius: ;
+margin: 0;
+position: relative;
+padding: 2vh 20vw 2vh 20vw;
+background-color: #ce0000;
+}
+@media (max-width:1200px) {
+#division-PXbhzQ8772352 {
+padding: 1.5vh 15vw 1.5vh 15vw;
+margin: 0;
+}
+}
+@media (max-width:600px) {
+#division-PXbhzQ8772352 {
+margin: 0;
+padding: 1.5vh 1.5vw 1.5vh 1.5vw;
+}
+}
+</style>
+<div id="division-PXbhzQ8772352" class="AsFujc6889138">
+<div class="description-slfnYb8772352">
+<style>
+.description-slfnYb8772352-element h3 {
+font-size: 1.32vw;
+text-align: center;
+padding-top: 1vh;
+padding-bottom: 1vh;
+color: #ffffff;
+line-height: 1.1;
+font-weight: 800;
+false
+}
+@media (max-width: 1200px) {
+.description-slfnYb8772352-element h3 {
+font-size: 1.80vw;
+padding-top: 0.75vh;
+padding-bottom: 0.75vh;
+}
+}
+@media (max-width: 640px) {
+.description-slfnYb8772352-element h3 {
+font-size: 4.00vw;
+padding-top: 0.75vh;
+padding-bottom: 0.75vh;
+text-align: center;
+}
+}
+</style>
+<div class="description-slfnYb8772352-element ">
+<h3>
+<b>⚠ ATENÇÃO! Não feche ou atualize essa página, isso pode gerar erros na sua compra!</b>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="division-RkYytd8853835__wrapper">
+<style>
+#division-RkYytd8853835 {
+border: none;
+border-radius: ;
+margin: 0;
+position: relative;
+padding: 3vh 20vw 3vh 20vw;
+background-color: #191919;
+}
+@media (max-width:1200px) {
+#division-RkYytd8853835 {
+padding: 2.25vh 15vw 2.25vh 15vw;
+margin: 0;
+}
+}
+@media (max-width:600px) {
+#division-RkYytd8853835 {
+margin: 0;
+padding: 1.5vh 1.5vw 1.5vh 1.5vw;
+}
+}
+</style>
+<div id="division-RkYytd8853835" class="zDCCDb6889139">
+<div class="headline-cgoCmJ8850752">
+<style>
+.headline-cgoCmJ8850752-element h1 {
+font-size: 2.31vw;
+text-align: center;
+padding-top: 2vh;
+padding-bottom: 3vh;
+color: #ffffff;
+line-height: 1.1;
+font-weight: 600;
+false
+}
+@media (max-width: 1200px) {
+.headline-cgoCmJ8850752-element h1 {
+font-size: 2.80vw;
+padding-top: 1.5vh;
+padding-bottom: 2.25vh;
+}
+}
+@media (max-width: 640px) {
+.headline-cgoCmJ8850752-element h1 {
+font-size: 5.60vw;
+padding-top: 1.5vh;
+padding-bottom: 2.25vh;
+text-align: center;
+}
+}
+</style>
+<div class="headline-cgoCmJ8850752-element headline">
+<h1><b>PARABÉNS!<br>
+        VOCÊ JÁ TEM ACESSO AO
+        "TRUQUE DO ABACAXI", MAS ANTES...<br></h2>		</div>
+        </div>
+        <div class="elementor-element elementor-element-5373492a elementor-widget elementor-widget-heading" data-id="5373492a" data-element_type="widget" data-widget_type="heading.default">
+        <div class="elementor-widget-container">
+            <h2 class="elementor-heading-title elementor-size-default" style="color: #2dc26b; font-size: 16px;">
+                <center>Tenho um recado importante de 2 minutos pra você...<br><br> <span style="color: #ffffff;"> Leia a mensagem abaixo...</span></center>
+</h1>
+</div>
+</div>
+<div class="description-YyscNY5319729">
+<style>
+.description-YyscNY5319729-element h3 {
+font-size: 1.65vw;
+text-align: center;
+padding-top: 4vh;
+padding-bottom: 2vh;
+color: #ffffff;
+line-height: 1.1;
+font-weight: 400;
+false
+}
+@media (max-width: 1200px) {
+.description-YyscNY5319729-element h3 {
+font-size: 2.50vw;
+padding-top: 3vh;
+padding-bottom: 1.5vh;
+}
+}
+@media (max-width: 640px) {
+.description-YyscNY5319729-element h3 {
+font-size: 4.38vw;
+padding-top: 3vh;
+padding-bottom: 1.5vh;
+text-align: center;
+}
+}
+</style>
+</div>
+<div class="description-ulmpzk5361282">
+<style>
+.description-ulmpzk5361282-element h3 {
+font-size: 1.65vw;
+text-align: center;
+padding-top: 4vh;
+padding-bottom: 2vh;
+color: #ffffff;
+line-height: 1.1;
+font-weight: 400;
+false
+}
+@media (max-width: 1200px) {
+.description-ulmpzk5361282-element h3 {
+font-size: 2.50vw;
+padding-top: 3vh;
+padding-bottom: 1.5vh;
+}
+}
+@media (max-width: 640px) {
+.description-ulmpzk5361282-element h3 {
+font-size: 4.38vw;
+padding-top: 3vh;
+padding-bottom: 1.5vh;
+text-align: center;
+}
+}
+</style>
+<div class="description-hyAXey5405935">
+<style>
+.description-hyAXey5405935-element h3 {
+font-size: 1.65vw;
+text-align: center;
+padding-top: 4vh;
+padding-bottom: 2vh;
+color: #ffffff;
+line-height: 1.1;
+font-weight: 400;
+false
+}
+@media (max-width: 1200px) {
+.description-hyAXey5405935-element h3 {
+font-size: 2.50vw;
+padding-top: 3vh;
+padding-bottom: 1.5vh;
+}
+}
+@media (max-width: 640px) {
+.description-hyAXey5405935-element h3 {
+font-size: 4.38vw;
+padding-top: 3vh;
+padding-bottom: 1.5vh;
+text-align: center;
+}
+}
+</style>
+<div class="description-hyAXey5405935-element">
+<h3>
+    <b>Durante anos, você pode ter lutado contra o alto <br>
+     nível de <span style="color:#535de7">glicose, cansaço, visão embaçada,<br> baixa libido, falta de autoestima, vergonha...</span> e vários problemas de saúde associados à diabetes. Mas você mostrou coragem e decidiu garantir o <span style="color:#e6d923"><b>Truque do Abacaxi.</span><br>
+    <br>
+
+    <div class="description-YyscNY5319729-element ">
+        <h3>
+        <b>Eu estou muito feliz por você ter dado<br> o primeiro passo para diminuir os <span style="color:#ff7100"><b> altos níveis <br>de glicose no seu sangue, </b></span>aumentar a produção<br> de insulina no seu corpo e, assim, <span style="color:#ff7100"><b>começar a eliminar</span> a diabetes da sua vida de forma <span style="color:#1ec241"> rápida, segura e comprovada.</b></span><br>
+        </h3>
+        </div>
+    </h3>
+</div>
+</div>
+<div class="description-WYioQJ5463914">
+<style>
+.description-WYioQJ5463914-element h3 {
+font-size: 1.65vw;
+text-align: center;
+padding-top: 4vh;
+padding-bottom: 2vh;
+color: #ffffff;
+line-height: 1.1;
+font-weight: 400;
+false
+}
+@media (max-width: 1200px) {
+.description-WYioQJ5463914-element h3 {
+font-size: 2.50vw;
+padding-top: 3vh;
+padding-bottom: 1.5vh;
+}
+}
+@media (max-width: 640px) {
+.description-WYioQJ5463914-element h3 {
+font-size: 4.38vw;
+padding-top: 3vh;
+padding-bottom: 1.5vh;
+text-align: center;
+}
+}
+</style>
+<div class="description-WYioQJ5463914-element ">
+<h3>
+    <b>Mas antes de celebrar as vitórias que estão por vir, eu preciso compartilhar algo <span style="background-color:#b41e1e">extremamente importante </span>que você provavelmente não considerou...
+<br>
+<br>
+    À medida que o tempo avança, os pacientes<br> estão colhendo os frutos do <span style="background-color:#92920e"> Truque do Abacaxi </span><br> com melhorias notáveis em seus níveis de<br> glicose no sangue e bem-estar em geral. 
+    <br>
+    <br>
+    Mas todos os dias eu recebia mensagens de pessoas que se curavam da diabetes, mas não conseguiam se curar do <span style="background-color:#1332b9"> pé diabético, dermatites, perda da sensibilidade e da cicatrização lenta de feridas e machucados.</span>
+</h3>
+</div>
+</div>
+<div class="description-ixqXzm5506896">
+<style>
+.description-ixqXzm5506896-element h3 {
+font-size: 1.65vw;
+text-align: center;
+padding-top: 4vh;
+padding-bottom: 2vh;
+color: #ffffff;
+line-height: 1.1;
+font-weight: 400;
+false
+}
+@media (max-width: 1200px) {
+.description-ixqXzm5506896-element h3 {
+font-size: 2.50vw;
+padding-top: 3vh;
+padding-bottom: 1.5vh;
+}
+}
+@media (max-width: 640px) {
+.description-ixqXzm5506896-element h3 {
+font-size: 4.38vw;
+padding-top: 3vh;
+padding-bottom: 1.5vh;
+text-align: center;
+}
+}
+</style>
+<div class="description-ixqXzm5506896-element ">
+<h3>
+    <b>Isso acontece pois, os altos níveis de glicose incapacitam as células de defesa do organismo, o que leva a dificuldade nos cuidados com a pele.
+        <br>
+        <br>
+    Assim, <span style="color:#b92613">não importa a quantidade de creme ou pomada que você passe... </span> somente as cirurgias e antibióticos vão ser capazes de tratar a sua pele. No entanto, existe uma maneira natural de prevenir que isso aconteça através da <br><span style="color:#19b913">REGENERAÇÃO CELULAR.</span>
+    <br><br>
+    Seu corpo já tem a capacidade de renovar as células da pele não saudáveis. Substituindo por células novinhas cheias de colágeno muito mais jovens, hidratadas, saudáveis, firmes e elásticas. <br><br>O problema é que com a diabetes, esse processo se torna mais lento, o que faz com que a pele que antes era jovem e saudável, se tornam <span style="color:#b4a30b">MACHUCADAS E RESSECADAS…</span>
+</b>
+</h3>
+</div>
+</div>
+<div class="description-dMgJdD8998549">
+<style>
+.description-dMgJdD8998549-element h3 {
+font-size: 1.65vw;
+text-align: center;
+padding-top: 4vh;
+padding-bottom: 2vh;
+color: #ffffff;
+line-height: 1.1;
+font-weight: 400;
+false
+}
+@media (max-width: 1200px) {
+.description-dMgJdD8998549-element h3 {
+font-size: 2.50vw;
+padding-top: 3vh;
+padding-bottom: 1.5vh;
+}
+}
+@media (max-width: 640px) {
+.description-dMgJdD8998549-element h3 {
+font-size: 4.38vw;
+padding-top: 3vh;
+padding-bottom: 1.5vh;
+text-align: center;
+}
+}
+</style>
+<div class="description-dMgJdD8998549-element ">
+<h3><b>
+    Mas, a boa notícia é que alguns cientistas descobriram uma <span style="color:#b92613">DIETA JAPONESA</span> capaz de ativar essa regeneração celular, com uma vitamina feita com um <span style="color:#19b913">MACRONUTRIENTE </span> super fácil de encontrar. 
+    <br>
+    <br>
+    Isso pode acelerar até 5x a renovação celular, para que, assim, enquanto você cura sua diabetes, sua pele esteja acompanhando o seu tratamento. 
+
+    Então quando você alcançar o seu nível baixo de glicemia, a sua pele vai estar <span style="background-color:#b92613"> PERFEITA, </span> <br>sem nenhuma ferida.
+    <br>
+    <br>
+    Então, se você quer viver essa nova realidade<br> sem diabetes na sua vida e ao mesmo tempo com uma pele impecável, sem feridas ou qualquer tipo de machucado... <br><br><span style="background-color:#132cb9">Eu preparei uma oportunidade IMPERDÍVEL <br> para você. </span>
+    <br>
+    <br>
+    A realidade é dura... 
+    <br>
+    <br>
+    A falta de cuidados com a pele pode afetar PROFUNDAMENTE a sua autoestima, <br><span style="color:#b92613">talvez até mais </span> do que o diabetes que você está se esforçando tanto pra controlar. 
+    <br>
+    <br>
+
+    Por isso eu apresento meu programa de <br>“Cuidados com a Pele” 
+
+    <center><img src="https://i.postimg.cc/RFJV4Km7/6-Protocolo-Anti-Flacidez-compressed-pdf.png" style="width: 40%;padding-top: 5%; padding-bottom: 5%;"> </center>
+    <br>como um complemento indispensável ao seu plano do <span style="background-color:#92920e">Truque do Abacaxi.</span><br><br>
+    Esse programa foi criado meticulosamente para acelerar a regeneração celular, mantendo sua pele firme e saudável durante todo o processo de fim da diabetes. 
+
+    <br>
+    <br>
+Dentro do programa eu mostro mais de 8 <br> receitas de vitaminas que concentram esse <br>macronutriente e obrigam seu organismo a acelerar a regeneração celular em até 5X. 
+<br>
+<br>
+<span style="background-color:#b92613">Assim, as células do seu corpo vão começar a se regenerar imediatamente, fortalecendo sua pele contra os machucados e aumentando a produção de colágeno.</span>
+<br>
+<br>
+Esse é um pacote especial que foi feito apenas <br> para quem acabou de garantir a receita do truque do abacaxi, assim como você!
+<br>
+<br>
+Dessa forma você acaba com a sua diabetes de forma acelerada enquanto sua pele acompanha esse processo. Para que daqui algumas semanas você se olhe no espelho e <span style="background-color:#ff7100"> veja sua pele saudável e bonita, sem machucados, feridas ou cicatrizes. </span>
+<br>
+<br>
+Então, se você deseja de fato evitar e eliminar os machucados, feridas e cicatrizes, você pode adicionar o programa de ‘Cuidados com a Pele’ ao seu pedido com apenas um clique e conseguir resultados melhores e ainda mais rápidos. 
+<br>
+<br>
+Esse programa é vendido geralmente por <br><br><s style="color:#b92613; font-size: 25px;">R$497,00.</s><br>
+<br>O que é muito barato se comparado aos futuros problemas que você pode ter se não tratar essa doença…
+<br>
+<br>
+Mas como você já confiou em mim e adquiriu sua receita para diabetes, decidi fazer um super desconto pra você…
+<br>
+<br>
+Somente aqui e agora você pode garantir seu acesso ao programa de Cuidados com a pele, investindo o valor adicional...</b>
+</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="division-MPIkkC5132759__wrapper">
+<style>
+#division-MPIkkC5132759 {
+border: none;
+border-radius: ;
+margin: 0;
+position: relative;
+padding: 3vh 20vw 3vh 20vw;
+background-color: #ffffff;
+}
+@media (max-width:1200px) {
+#division-MPIkkC5132759 {
+padding: 2.25vh 15vw 2.25vh 15vw;
+margin: 0;
+}
+}
+@media (max-width:600px) {
+#division-MPIkkC5132759 {
+margin: 0;
+padding: 1.5vh 1.5vw 1.5vh 1.5vw;
+}
+}
+</style>
+<div id="division-MPIkkC5132759" class="axdodB6889141">
+<div class="subheadline-hdrrze5682007">
+<style>
+.subheadline-hdrrze5682007-element h2 {
+font-size: 1.65vw;
+text-align: center;
+padding-top: 2vh;
+padding-bottom: 2vh;
+color: #000000;
+line-height: 1.1;
+font-weight: 400;
+false
+}
+@media (max-width: 1200px) {
+.subheadline-hdrrze5682007-element h2 {
+font-size: 2.50vw;
+padding-top: 1.5vh;
+padding-bottom: 1.5vh;
+}
+}
+@media (max-width: 640px) {
+.subheadline-hdrrze5682007-element h2 {
+font-size: 4.50vw;
+padding-top: 1.5vh;
+padding-bottom: 1.5vh;
+text-align: center;
+}
+}
+</style>
+<div class="subheadline-hdrrze5682007-element subheadline">
+<h2>
+<b>POR APENAS</b><br><br><b>12x <span style="color:#ff0000; font-size: 30px;"><b>R$10,03</b></span><br><br><b>ou R$ 97,00 À VISTA</b>
 </h2>
 </div>
-				</div>
-					</div>
-				</div>
-		<div class="elementor-element elementor-element-50960ce1 e-flex e-con-boxed e-con" style="padding-bottom: -10px;" data-id="50960ce1" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;content_width&quot;:&quot;boxed&quot;}">
-					<div class="e-con-inner">
-				<div class="elementor-element elementor-element-4e91b20d elementor-widget elementor-widget-heading" data-id="4e91b20d" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h2 class="elementor-heading-title elementor-size-default">PARABÉNS!<br>
-                VOCÊ JÁ TEM ACESSO AO
-                "TRUQUE DO ABACAXI", MAS ANTES...<br></h2>		</div>
-				</div>
-				<div class="elementor-element elementor-element-5373492a elementor-widget elementor-widget-heading" data-id="5373492a" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-                    <h2 class="elementor-heading-title elementor-size-default" style="color: #2dc26b;">
-                        Tenho um recado importante de 2 minutos pra você...<br> Assista o vídeo abaixo...
-                    </h2>
-                    <br>
-                                    </div>
-					<div class="e-con-inner">
-				<div class="elementor-element elementor-element-1aa14b72 elementor-widget-mobile_width-inherit elementor-widget_width-inherit elementor-widget elementor-widget-html" data-id="1aa14b72" data-element_type="widget" data-widget_type="html.default">
-				<div class="elementor-widget-container">
-<div id="vid_65a205e3e5dd08000aacecd3" style="position:relative;width:100%;padding: 100% 0 0;"><img id="thumb_65a205e3e5dd08000aacecd3" src="https://images.converteai.net/439a8e1f-6010-450d-8c78-2e3abaf99a39/players/65a205e3e5dd08000aacecd3/thumbnail.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;"><div id="backdrop_65a205e3e5dd08000aacecd3" style="position:absolute;top:0;width:100%;height:100%;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);"></div></div><script type="text/javascript" id="scr_65a205e3e5dd08000aacecd3">var s=document.createElement("script");s.src="https://scripts.converteai.net/439a8e1f-6010-450d-8c78-2e3abaf99a39/players/65a205e3e5dd08000aacecd3/player.js",s.async=!0,document.head.appendChild(s);</script>
-					<style>
-  .button-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 30vh;
-  }
-
-  .button {
-    padding: 12px 24px;
-    font-size: 16px;
-    margin: 8px;
-    cursor: pointer;
-    border-radius: 20px;
-    border-color: black;
-    width: 355px;
-    text-align: center;
-  }
-
-  .green-button {
-    background-color: #00FF00;
-    color: #000000;
-    width: 500px;
-    font-weight: bold;
-    animation-delay: 1s;
-    animation: pulsate 2s infinite;
-  }
-
-  .red-button {
-    background-color: #FF0000;
-    color: #FFFFFF;
-  }
-
-  @media screen and (max-width: 768px) {
-    .green-button {
-    background-color: #00FF00;
-    color: #000000;
-    width: 340px;
-    font-size: 13px;
-    font-weight: bold;
-    animation-delay: 1s;
-    animation: pulsate 2s infinite;
-    padding-top: -10px;
-  }
-
-  .red-button {
-    background-color: #FF0000;
-    color: #FFFFFF;
-    width: 300px;
-    font-size: 13px;
-  }
-
-  }
-
-  @keyframes pulsate {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-</style>
-</head>
-<body>
-<div class="button-container">
-  <a href="https://app.doppus.com/modal/234u293476">
-    <button class="button green-button" id="green-button">EU QUERO TER UMA PELE SAUDÁVEL</button>
-  </a>
-  <a href="https://oseubemestar.site/down01">
-    <button class="button red-button" id="red-button">NÃO, EU VOU PERDER ESSA OPORTUNIDADE</button>
-  </a>
 </div>
-</div>
-<script type="text/javascript">
-var newUrl = location.pathname + location.search;
-
-(function(window, location) {
-history.replaceState(null, document.title, newUrl+"#!/backbutton");
-history.pushState(null, document.title, newUrl);
-window.addEventListener("popstate", function() {
-if(location.hash === "#!/backbutton") {
-history.replaceState(null, document.title, newUrl);
-setTimeout(function(){
-location.replace("https://oseubemestar.site/down01");
-},0);
+<div class="button-XhWAPd5581236">
+<style>
+a.button-XhWAPd5581236-element {
+background-color: #00dd00;
+border-radius: 32px;
+border: 4px solid #000000;
+color: #ffffff;
+padding: 16px 32px 16px 32px;
+font-weight: 600;
+display: block;
+width: fit-content;
+text-align: center;
+margin: 2vh auto 2vh auto;
+font-size: 1.49vw;
+box-sizing: border-box;
+max-width: 100%;
+transition: all 0.5s ease-in-out;
 }
-}, false);
-}(window, location));
-</script>
+a.button-XhWAPd5581236-element:hover {
+filter: brightness(1.2);
+}
+@media (max-width: 1200px) {
+a.button-XhWAPd5581236-element {
+font-size: 1.69vw;
+margin: 1.32vh auto 1.5vh auto;
+padding: 8px 16px 8px 16px;
+}
+}
+@media (max-width: 640px) {
+a.button-XhWAPd5581236-element {
+font-size: 3.94vw;
+padding: 12px 24px 12px 24px;
+margin: 1vh auto 1vh auto;
+}
+}
+</style>
+<a href="https://app.doppus.com/modal/234u293476" target="_self" class="btn button-XhWAPd5581236-element zooming">
+SIM, EU QUERO TER UMA PELE SAUDÁVEL
+</a>
+</div>
+</div>
+</div>
+<div class="division-bpnJyK5764133__wrapper">
+<style>
+#division-bpnJyK5764133 {
+border: none;
+border-radius: ;
+margin: 0;
+position: relative;
+padding: 3vh 20vw 3vh 20vw;
+background-color: #000000;
+}
+@media (max-width:1200px) {
+#division-bpnJyK5764133 {
+padding: 2.25vh 15vw 2.25vh 15vw;
+margin: 0;
+}
+}
+@media (max-width:600px) {
+#division-bpnJyK5764133 {
+margin: 0;
+padding: 1.5vh 1.5vw 1.5vh 1.5vw;
+}
+}
+</style>
+<div id="division-bpnJyK5764133" class="IqrjwM6889142">
+<div class="image-WbBmai5790196">
+<style>
+.image-WbBmai5790196-element img {
+display: block;
+margin-left: auto;
+margin-right: auto;
+margin-bottom: 0.25vh;
+margin-top: 0.25vh;
+max-width: 20%;
+border-radius: 0;
+border: none;
+}
+@media (max-width: 1200px) {
+.image-WbBmai5790196-element img {
+max-width: 18%;
+}
+}
+@media (max-width: 600px) {
+.image-WbBmai5790196-element img {
+max-width: 80%;
+margin-left:auto;margin-right:auto;
+}
+}
+</style>
+<div class="image-WbBmai5790196-element">
+<img loading="lazy" src="https://img.imageboss.me/atm/cdn/format:auto/u/t0r5SIyNS1QKKuHkKHaItqM7rOS2/l/GIWYRp8614585.png" alt="">
+</div>
+</div>
+<div class="subheadline-KjrwSL5824565">
+<style>
+.subheadline-KjrwSL5824565-element h2 {
+font-size: 1.65vw;
+text-align: center;
+padding-top: 2vh;
+padding-bottom: 2vh;
+color: #ffffff;
+line-height: 1.1;
+font-weight: 400;
+false
+}
+@media (max-width: 1200px) {
+.subheadline-KjrwSL5824565-element h2 {
+font-size: 2.50vw;
+padding-top: 1.5vh;
+padding-bottom: 1.5vh;
+}
+}
+@media (max-width: 640px) {
+.subheadline-KjrwSL5824565-element h2 {
+font-size: 4.50vw;
+padding-top: 1.5vh;
+padding-bottom: 1.5vh;
+text-align: center;
+}
+}
+</style>
+<div class="subheadline-KjrwSL5824565-element subheadline">
+<h2>
+<b>TALVEZ VOCÊ ESTEJA INSEGURO…</b><br><br>Por isso precisamos temos que te lembrar da sua garantia incondicional de 30 dias. Se por algum motivo o produto não te agradar, iremos devolver 100% do seu dinheiro sem nenhum questionamento!
+</h2>
+</div>
+</div>
+</div>
+</div>
+<script src="/backredirectdiabetes/js/Ngbcxf6894742.js" charset="utf-8"></script>
+<script type="text/javascript">document.head.appendChild(Object.assign(document.createElement("script"), {src: "https://cdn.atomicatpages.com/a.js?cache=" + Math.floor((Math.random() * 100000)),async: true}));</script>
 </body>
 </html>
