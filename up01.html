@@ -178,21 +178,11 @@ src="https://www.facebook.com/tr?id=979563323105410&ev=PageView&noscript=1"
   </a>
 </div>
 </div>
-<script type="text/javascript">
-var newUrl = location.pathname + location.search;
-
-(function(window, location) {
-history.replaceState(null, document.title, newUrl+"#!/backbutton");
-history.pushState(null, document.title, newUrl);
-window.addEventListener("popstate", function() {
-if(location.hash === "#!/backbutton") {
-history.replaceState(null, document.title, newUrl);
-setTimeout(function(){
-location.replace("https://oseubemestar.site/down01");
-},0);
-}
-}, false);
-}(window, location));
+<script>
+  // Função para exibir os botões após o time
+  setTimeout(function() {
+    document.getElementById('green-button').style.display = 'block';
+  }, 60000); // 2000 milissegundos = 2 minutos e 40 segundos
 </script>
 </body>
 </html>
