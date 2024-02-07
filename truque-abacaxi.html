@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-BR" dir="ltr">
 <head>
-    <script type="text/javascript">
-var newUrl = location.pathname + location.search;
+    <script>
+  const link = 'https://oseubemestar.site/oferta-unica-pepper';
 
-(function(window, location) {
-history.replaceState(null, document.title, newUrl+"#!/backbutton");
-history.pushState(null, document.title, newUrl);
-window.addEventListener("popstate", function() {
-if(location.hash === "#!/backbutton") {
-history.replaceState(null, document.title, newUrl);
-setTimeout(function(){
-location.replace("https://oseubemestar.site/oferta-unica-pepper");
-},0);
-}
-}, false);
-}(window, location));
+  function setBackRedirect(url) {
+    let urlBackRedirect = url;
+    urlBackRedirect = urlBackRedirect =
+      urlBackRedirect.trim() +
+      (urlBackRedirect.indexOf('?') > 0 ? '&' : '?') +
+      document.location.search.replace('?', '').toString();
+
+    history.pushState({}, '', location.href);
+    history.pushState({}, '', location.href);
+    history.pushState({}, '', location.href);
+
+    window.addEventListener('popstate', () => {
+      console.log('onpopstate', urlBackRedirect);
+      setTimeout(() => {
+        location.href = urlBackRedirect;
+      }, 1);
+    });
+  }
+
+  setBackRedirect(link);
 </script>
     
     <script>
