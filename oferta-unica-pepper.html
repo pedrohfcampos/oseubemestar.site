@@ -2,38 +2,55 @@
 <html lang="pt-BR" dir="ltr">
 <head>
   <script>
-  function getParams() {
-    let t = "",
-      e = window.top.location.href,
-      r = new URL(e);
-    if (null != r) {
-      let a = r.searchParams.get("utm_source"),
-        n = r.searchParams.get("utm_medium"),
-        o = r.searchParams.get("utm_campaign"),
-        m = r.searchParams.get("utm_term"),
-        c = r.searchParams.get("utm_content");
-      -1 !== e.indexOf("?") && (t = `&sck=${a}|${n}|${o}|${m}|${c}`),
-        console.log(t);
+  function getExtraParams() {
+    let t = "";
+    const e = window.top.location.href;
+    const r = new URL(e);
+    if (r != null) {
+      const w = r.searchParams.get("xcod");
+      e.indexOf("?") !== -1 && (t = `&sck=${w}&xcod=${w}`);
     }
     return t;
   }
-  !(function () {
-    var t = new URLSearchParams(window.location.search);
-    t.toString() &&
-      document.querySelectorAll("a").forEach(function (e) {
-            (-1 === e.href.indexOf("?")
-              ? (e.href += "?" + t.toString() + getParams())
-              : (e.href += "&" + t.toString() + getParams()));
-      });
-  })();
+
+  function getRawQueryParams() {
+    return new URLSearchParams(window.location.search).toString();
+  }
+
+  function work() {
+    function rebuildLinks() {
+      !(function () {
+        const t = new URLSearchParams(window.location.search);
+        t.toString() &&
+          document.querySelectorAll("a").forEach((e) => {
+            e.href.indexOf("?") === -1
+              ? (e.href += `?${t.toString()}${getExtraParams()}`)
+              : (e.href += `&${t.toString()}${getExtraParams()}`);
+          });
+      })();
+    }
+
+    function configWindowOpen() {
+      const saveOpen = window.open;
+      window.open = function (url, windowName, parms) {
+        url = url.indexOf("?") === -1 ? url + "?" : url + "&";
+        url += getRawQueryParams() + getExtraParams();
+
+        saveOpen(url, windowName || "", parms || "");
+      };
+    }
+
+    rebuildLinks();
+    configWindowOpen();
+  }
+
+  if (document.readyState === "complete") {
+    work();
+  } else {
+    window.addEventListener("load", work);
+  }
 </script>
   
-  <fs class="RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME}.html -f
-  RewriteRule ^(.+)$ $1.html [L,QSA]
-  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\.html\ HTTP/
-  RewriteRule ^(.*)\.html$ /$1 [R=301,L]"></fs>
     <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -51,6 +68,7 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=979563323105410&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+  
 <meta name="robots" content="index, follow">
 <link rel="shortcut icon" href="data:" />
 <meta property="og:type" content="website">
